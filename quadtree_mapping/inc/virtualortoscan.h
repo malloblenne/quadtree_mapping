@@ -20,11 +20,22 @@
 #ifndef _VIRTUALORTOSCAN_H
 #define _VIRTUALORTOSCAN_H
 
-#include <cmath>
 #include <vector>
-#include <iostream>
-using namespace std;
 
+
+//! This function emulate a scan from a laser range finder in a rectangular map delimited by xlow, ylow, xhigh, yhigh
+/*!
+ * \brief virtualortoscan
+ * \param xr x coordinate of the robot
+ * \param yr y coordinate of the robot
+ * \param theta orientation of the robot in deg
+ * \param xlow min x coordinate for rectangular map
+ * \param ylow min y coordinate for rectangular map
+ * \param xhigh max x coordinate for rectangular map
+ * \param yhigh max y coordinate for rectangular map
+ * \param xpt vector of points of the scan, x coordinates
+ * \param ypt vector of points of the scan, y coordinates
+ */
 void virtualortoscan(float xr, float yr, float theta,float xlow, float ylow, float xhigh, float yhigh, vector<float>& xpt, vector<float>& ypt );
 
 #endif /* _VIRTUALORTOSCAN_H */

@@ -1,5 +1,8 @@
 #include "virtualortoscan.h"
 
+#include <cmath>
+#include <iostream>
+
 #define PI 3.14159265 //credo ci sia da qualche parte
 
 

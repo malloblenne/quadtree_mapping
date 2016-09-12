@@ -39,15 +39,15 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-  //cout << "Hello, world!" << endl;
-  Quadtree *q;
+
   fstream f;
-  uint maxdim;
-  maxdim= 65000;//(rangeof(int)); // limite dell'int
-  //cout << maxdim << endl;
-  q=new Quadtree(maxdim,64); //256cm il quadratone
-  //cout << *q << endl;
+  const unsigned int maxdim = 65000;//(rangeof(int)); // or use the limit
+
+  Quadtree *q = new Quadtree(maxdim,64); //256cm il quadratone
+
+
   bool success=false;
+
   string stringona;
   char buffer[20];
   //uso un quadrato
@@ -63,7 +63,12 @@ int main(int argc, char *argv[])
   // xr=47; yr=47; theta=0;
   virtualortoscan(xr,yr,theta,10,10,50,50, xscan,yscan);
  
- for(int i=0;i < xscan.size(); i++) cout << xscan.at(i) << "  " << yscan.at(i) << endl;
+  // Result of a scan (for gnuplot)
+  std::cout << "Visualize the scan in gnuplot" << std::endl;
+  for(int i=0;i < xscan.size(); i++)
+  {
+      cout << xscan.at(i) << "  " << yscan.at(i) << endl;
+  }
 
   for(int i=0;i < xscan.size(); i++)
      {

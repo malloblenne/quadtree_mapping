@@ -1,4 +1,4 @@
- /***************************************************************************
+/***************************************************************************
  *   Copyright (C) 2007 by Mauro Brenna, Ivan Reguzzoni   *
  *   malloblenne@gmail.com   *
  *                                                                         *
@@ -22,28 +22,42 @@
 
 #include "node.h"
 
+namespace QuadtreeLib
+{
+//! Class representing the whole quadtree
 class Quadtree
 {
 
-friend std::ostream &operator<<(std::ostream &, Quadtree &);
+    friend std::ostream &operator<<(std::ostream &, Quadtree &);
 
 public:
-Quadtree(uint maxdim, uint initdim);
-~Quadtree();
-//inserimento un punto alla volta (controlla anche se sfora la dim..e provvede)
-bool insertPt (const float &xr,const float &yr, const float &xpt, const float &ypt); 
-// da implementare un inserimento di scansione o da file
-// insert(file)
-Node* getRoot() {return root;}
+
+    //! Constructor
+    //! \param maxdim maximum dimension
+    //! \param initdim initial dimension of the quadtree. It can be expanded later
+    Quadtree(unsigned int maxdim, unsigned int initdim);
+
+    //! Destructor
+    virtual ~Quadtree();
+
+    //inserimento un punto alla volta (controlla anche se sfora la dim..e provvede)
+    bool insertPt (const float &xr,const float &yr, const float &xpt, const float &ypt);
+
+    // da implementare un inserimento di scansione o da file
+    // insert(file)
+    Node* getRoot() {return root;}
+
 private:
 
-void createNodesandPutN(Node *n,int childpos);
-void fatherCorner(Node *n,float x, float y); // il nome nn c'entra ormai nulla(leggi il chiamante)
-bool outOfBorder(const float &x,const float &y, Node *n, bool &limitReached); // check se il punto o il robot sono fuori e crea quadrato + grosso
-Node *root; // radice dell'albero
-const uint maxDim; // max dim del quadtree. Serve qnd lo ingrandisco
-const uint initDim; // dimensione quadtree iniziale..Poi si può espandere
- 
-};
+    void createNodesandPutN(Node *n,Direction::e childpos);
+    void fatherCorner(Node *n,float x, float y); // il nome nn c'entra ormai nulla(leggi il chiamante)
+    bool outOfBorder(const float &x,const float &y, Node *n, bool &limitReached); // check se il punto o il robot sono fuori e crea quadrato + grosso
 
+    //! Root of the whole quadtree tree
+    Node *root;
+    //! Maximum dimension of the quadtree. Used when making the square bigger
+    const unsigned int maxDim;
+
+};
+}
 #endif /* _QUADTREE_H */
